@@ -27,18 +27,20 @@ Optional:
 
 `-w` or `--width`: Column width of the window/display to show the message on. (Default=60)
 
+`-d` or `--duration`: Duration of each display update in seconds. (Default=0.2)
+
 ### Example
 
-Print the message 'Hello World!' with the default trailspace of 15 characters and display width of 60 columns:
+Print the message 'Hello World!' with the default trailspace of 15 characters, display width of 60 columns and duration of 0.2 seconds:
 
 ```bash
 $ python3 scroller.py -m 'Hello World!'
 ```
 
-Print the message 'Hello World!' with a trailspace of 10 characters and display width of 80 columns:
+Print the message 'Hello World!' with a trailspace of 10 characters, display width of 80 columns and duration of 0.1 seconds:
 
 ```bash
-$ python3 scroller.py -m 'Hello World!' -t 10 -w 80
+$ python3 scroller.py -m 'Hello World!' -t 10 -w 80 -d 0.1
 ```
 
 ## Compatibility

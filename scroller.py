@@ -12,12 +12,28 @@ def handler(signal_received, frame):
 
 def getHelp():
 	# print help information, then quit
-	print("\nList of options:\n\n"+
+	print(
+		"\nList of options:\n\n"+
 		"- (m)essage to display\n"+
-		"- (t)railing whitespace characters to display after message, "+
-			"default=15\n"+
-		"- (w)idth of display in columns to show message on, default=60\n"+
-		"--help to show this help message")
+		"- (t)railing whitespace characters to display after message,"+
+			"\n  default=15\n"+
+		"- (w)idth of display in columns to show message on,"+
+			"\n  default=60\n"+
+		"- (d)uration of each display update in seconds,"+
+			"\n  default=0.2\n"+
+		"--help to show this help message"
+		)
+
+	print(
+		"\nUsage:\n\n"+
+		"Print 'Hello World!' with the default trailspace of " +
+		"15 characters,\ndisplay width of 60 columns and duration of " +
+		"0.2s:\n\n" +
+		"\tscroller.py -m 'Hello World!'\n\n"+
+		"Print 'Hello World!' with a trailspace of 10 characters,\n"+
+		"display width of 80 columns and duration of 0.1s:\n\n"+
+		"\tscroller.py -m 'Hello World!' -t 10 -w 80 -d 0.1\n"
+		)
 	sys.exit(0)
 
 def main():
@@ -28,13 +44,14 @@ def main():
 	message = None
 	trail = 15
 	width = 60
+	speed = 0.2
 
 	argv = sys.argv[1:]
 
 	# try getting supported parameters and args from command line
 	try:
-		opts, args = getopt.getopt(argv, "m:t:w:", 
-			["message=", "trail=", "width=", "help"])
+		opts, args = getopt.getopt(argv, "m:t:w:d:", 
+			["message=", "trail=", "width=", "duration=", "help"])
 	except:
 		print("Error parsing options")
 		getHelp()
@@ -58,6 +75,12 @@ def main():
 				width = int(arg)
 			except:
 				print("Error parsing width!")
+				getHelp()
+		elif opt in ['-d', '--duration']:
+			try:
+				speed = float(arg)
+			except:
+				print("Error parsing speed!")
 				getHelp()
 		elif opt in ['--help']:
 			getHelp()
@@ -99,7 +122,7 @@ def main():
 			p1 = (p1+1)%len(cMessage)
 			p2 = (p2+1)%len(cMessage)
 
-		time.sleep(0.2)
+		time.sleep(speed)
 
 if __name__ == '__main__':
 	main()
