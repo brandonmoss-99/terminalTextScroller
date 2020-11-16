@@ -94,11 +94,11 @@ def main():
 	cMessage = message + " "*trail
 
 	# append extra copies of the message to the end of the message,
-	# if it + the extra trail whitespace is shorter than the display width.
+	# if it + the extra trail whitespace is less/equal to the display width.
 	# Ensures the display prints out the correct width, and the trailing
 	# whitespace is as specified, where multiple instances of the message
 	# appear on the display at once if short enough.
-	while(len(cMessage) < width):
+	while(len(cMessage) <= width):
 		cMessage = cMessage + cMessage
 
 	# initialise pointer positions for which parts of the message to display
