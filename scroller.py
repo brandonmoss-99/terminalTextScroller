@@ -118,7 +118,7 @@ def main():
 		elif(p1 < p2):
 			# get rid of the console cursor on the screen
 			print("\u001b[?25l", end="")
-			print(cMessage[p1:p2] + cMessage[p1:0], end="\r")
+			print(cMessage[p1:p2], end="\r")
 			p1 = (p1+1)%len(cMessage)
 			p2 = (p2+1)%len(cMessage)
 
